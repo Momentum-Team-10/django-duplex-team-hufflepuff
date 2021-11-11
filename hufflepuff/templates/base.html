@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>{% block title %}{% endblock title %}</title>
 </head>
+
 <body>
+  <header class="header bg-black b--white-10 flex items-center justify-between">
+    {% comment %} fix href {% endcomment %}
+    <a href='#' class='f3 lh-title white items-center no-underline'>
+      <h1 class='f3-ns lh-title white items-center'>
+        <i class="fas fa-laptop-code white ph2 fa-lg"></i>
+        Code Snippets
+      </h1>
+    </a>
+
+    <nav class="flex bb">
+      <div class="flex-grow pa3 flex items-center">
+        {% comment %} "{% if user.is_authenticated %}" {% endcomment %}
+        <p class="white pr2">Hello, "UserName"!</p>
+        {% comment %} fix hrefs {% endcomment %}
+        {% comment %} insert profile "<img>" {% endcomment %}
+        <a href='#' class='white pl2'>Favorites</a>
+        <a href='#' class='white pl2 mr2'>Logout</a>
+        {% comment %} "{% else %}" {% endcomment %}
+        {% comment %} fix href {% endcomment %}
+        {% comment %} <a href='#' class="white pr3">Login</a> {% endcomment %}
+        {% comment %} <a href='#' class ="white">Signup</a> {% endcomment %}
+        {% comment %} "{% endif %}" {% endcomment %}
+      </div>
+    </nav>
+  </header>
+
+  <div class="ma3">
   {% block content %}
   {% endblock %}
+  </div>
+
 </body>
+
 </html>
