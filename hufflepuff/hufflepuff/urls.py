@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 import debug_toolbar
-
+from code_snips import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
+    path('', views.home_page, name='home_page')
 ]
 
 if settings.DEBUG:
