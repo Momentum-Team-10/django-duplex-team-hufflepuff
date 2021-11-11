@@ -17,10 +17,12 @@ class Snippet(models.Model):
     description = models.TextField()
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING)
     libraries = models.ManyToManyField('Library', related_name='snippets', blank=True)
     languages = models.ForeignKey('Language', on_delete=models.DO_NOTHING)
     tags = models.ManyToManyField('Tag', related_name="snippets", blank=True)
     framework = models.ForeignKey('Framework', on_delete=models.DO_NOTHING)
+    favorited = models.ManyToManyField('User', related_name="snippets", null=True, blank=True)
 
     def __repr__(self):
         return f"<Snippet title={self.title}>"
