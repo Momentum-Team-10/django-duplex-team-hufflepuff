@@ -21,8 +21,8 @@ class Snippet(models.Model):
     libraries = models.ManyToManyField('Library', related_name='snippets', blank=True)
     language = models.ForeignKey('Language', on_delete=models.DO_NOTHING)
     tags = models.ManyToManyField('Tag', related_name="snippets", blank=True)
-    framework = models.ForeignKey('Framework', on_delete=models.DO_NOTHING)
-    favorited = models.ManyToManyField('User', related_name="snippets", null=True, blank=True)
+    framework = models.ForeignKey('Framework', on_delete=models.DO_NOTHING, blank=True, null=True)
+    favorited = models.ManyToManyField('User', related_name="snippets", blank=True)
 
     def __repr__(self):
         return f"<Snippet title={self.title}>"
