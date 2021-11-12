@@ -11,11 +11,11 @@
 </head>
 
 <body>
-  <header class="header bg-black b--white-10 flex items-center justify-between">
+  <header class="header bg-black b--white-10 flex items-center justify-between sans-serif">
     {% comment %} fix href {% endcomment %}
     <a href='#' class='f3 lh-title white items-center no-underline'>
       <h1 class='f3-ns lh-title white items-center'>
-        <i class="fas fa-laptop-code white ph2 fa-lg"></i>
+        <i class="fas fa-laptop-code white ph2 fa-lg sans-serif"></i>
         Code Snippets
       </h1>
     </a>
@@ -23,15 +23,15 @@
     <nav class="flex bb">
       <div class="flex-grow pa3 flex items-center">
         {% comment %} "{% if user.is_authenticated %}" {% endcomment %}
-        <p class="white pr2">Hello, "UserName"!</p>
+        <p class="f4 fw6 white pr2 sans-serif ph6">Hello, "UserName"!</p>
         {% comment %} fix hrefs {% endcomment %}
         {% comment %} insert profile "<img>" {% endcomment %}
-        <a href='#' class='white pl2'>Favorites</a>
-        <a href='#' class='white pl2 mr2'>Logout</a>
+        <a class="f4 fw6 db light-gray link dim" href="#0">Favorites |</a>
+        <a class="f4 fw6 db light-gray link dim ph1" href="#0">Logout</a>
         {% comment %} "{% else %}" {% endcomment %}
         {% comment %} fix href {% endcomment %}
-        {% comment %} <a href='#' class="white pr3">Login</a> {% endcomment %}
-        {% comment %} <a href='#' class ="white">Signup</a> {% endcomment %}
+        {% comment %} <a class="f4 fw6 db gray link dim" href="#">Login</a> {% endcomment %}
+        {% comment %} <a class="f4 fw6 db gray link dim" href="#">Sign Up</a> {% endcomment %}
         {% comment %} "{% endif %}" {% endcomment %}
       </div>
     </nav>
