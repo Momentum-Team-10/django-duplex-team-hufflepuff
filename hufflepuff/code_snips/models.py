@@ -18,10 +18,9 @@ class Snippet(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING)
+    language = models.ForeignKey('Language', on_delete=models.CASCADE)
     libraries = models.ManyToManyField('Library', related_name='snippets', blank=True)
-    language = models.ForeignKey('Language', on_delete=models.DO_NOTHING)
     tags = models.ManyToManyField('Tag', related_name="snippets", blank=True)
-    framework = models.ForeignKey('Framework', on_delete=models.DO_NOTHING, blank=True, null=True)
     favorited = models.ManyToManyField('User', related_name="snippets", blank=True)
 
     def __repr__(self):
@@ -31,14 +30,13 @@ class Snippet(models.Model):
         return self.name
 
 
-
 class Language(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=25)
     slug = AutoSlugField(populate_from='name')
 
     def __repr__(self):
         return f"<Language name={self.name}>"
-    
+
     def __str__(self):
         return self.name
 
@@ -56,7 +54,7 @@ class Tag(models.Model):
 
 class Library(models.Model):
     name = models.CharField(max_length = 75)
-    slug = AutoSlugField()
+    slug = AutoSlugField(populate_from='name')
 
     def __repr__(self):
         return f"<Library name={self.name}>"
@@ -64,20 +62,10 @@ class Library(models.Model):
     def __str__(self):
         return self.name
 
-class Framework(models.Model):
-    name = models.CharField(max_length=50)
-    slug = AutoSlugField(populate_from='name')
-
-    def __repr__(self):
-        return f"<Framework name={self.name}>"
-
-    def __str__(self):
-        return self.name
-
 
 class Comment(models.Model):
     text = models.TextField()
-    user = models.ForeignKey('User', on_delete=models.SET_NULL)
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     snippet = models.ForeignKey('Snippet', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
