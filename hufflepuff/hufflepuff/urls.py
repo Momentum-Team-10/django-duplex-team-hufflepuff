@@ -21,7 +21,8 @@ from code_snips import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('', views.home_page, name='home_page')
+    path('', views.home_page, name='home_page'),
+    path('/user_page', views.user_page, name='user_page'),
 ]
 
 if settings.DEBUG:
