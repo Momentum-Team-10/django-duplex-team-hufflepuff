@@ -4,10 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+<<<<<<< HEAD
 django = "*"
 django-extensions = "*"
 django-debug-toolbar = "*"
 django-environ = "*"
+=======
+>>>>>>> main
 
 [dev-packages]
 
