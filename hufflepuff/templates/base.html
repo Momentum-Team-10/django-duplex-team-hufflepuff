@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>{% block title %}{% endblock title %}</title>
@@ -26,7 +28,7 @@
         <p class="f4 fw6 white pr2 sans-serif ph6">Hello, "UserName"!</p>
         {% comment %} fix hrefs {% endcomment %}
         {% comment %} insert profile "<img>" {% endcomment %}
-        <a class="f4 fw6 db light-gray link dim" href="#0">Favorites |</a>
+        <a class="f4 fw6 db light-gray link dim" href="{% url 'user_page' %}">Favorites |</a>
         <a class="f4 fw6 db light-gray link dim ph1" href="#0">Logout</a>
         {% comment %} "{% else %}" {% endcomment %}
         {% comment %} fix href {% endcomment %}

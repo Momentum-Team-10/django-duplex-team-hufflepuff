@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% load static %}
+
+{% block content %}
+<div class="flex justify-between">
+  <form class="pa4 black-80">
+    <div class="measure">
+      <label for="name" class="f6 b db mb2 sans-serif">Search Snips</label>
+      <input id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+    </div>
+  </form>
+  <h1 class="f2 f2-m f1-l fw2 black-90 mv3 sans-serif pr5 pt4">
+    Saved Snips
+  </h1>
+  <div class="pa4 tc">
+    <img
+      src="https://avatars.githubusercontent.com/u/75756310?v=4"
+      class="br4 h3 w3 dib" alt="avatar">
+    <h2 class="f5 f4-ns fw6 mid-gray sans-serif">UserName</h2>
+  </div>
+</div>
+<div class="flex items-center justify-center">
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
+  <article class="mh2 hidden mv4 m0">
+    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">Python</h1>
+    <div class="pa3 ba">
+      <p class="f6 f5-ns lh-copy measure mv0 courier">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+        vero eos et accusam et justo duo dolores et ea rebum.
+      </p>
+    </div>
+  </article>
+  <div class="flex flex-column">
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Sorting</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Function</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Recursive</a>
+  </div>
+</div>
+<div class="flex items-center justify-center">
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
+  <article class="mh2 hidden mv4 m0">
+    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">CSS</h1>
+    <div class="pa3 ba">
+      <p class="f6 f5-ns lh-copy measure mv0 courier">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+        vero eos et accusam et justo duo dolores et ea rebum.
+      </p>
+    </div>
+  </article>
+  <div class="flex flex-column">
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Flex-Box</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Animation</a>
+  </div>
+</div>
+<div class="flex items-center justify-center">
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
+  <article class="mh2 hidden mv4 m0">
+    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">JavaScript</h1>
+    <div class="pa3 ba">
+      <p class="f6 f5-ns lh-copy measure mv0 courier">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+        vero eos et accusam et justo duo dolores et ea rebum.
+      </p>
+    </div>
+  </article>
+  <div class="flex flex-column">
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">React</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">UI</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Dynamic</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">Forms</a>
+  </div>
+</div>
+<div class="flex items-center justify-center">
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
+  <article class="mh2 hidden mv4 m0">
+    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">JavaScript</h1>
+    <div class="pa3 ba">
+      <p class="f6 f5-ns lh-copy measure mv0 courier">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+        vero eos et accusam et justo duo dolores et ea rebum.
+      </p>
+    </div>
+  </article>
+  <div class="flex flex-column">
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">AJAX</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">API</a>
+  </div>
+</div>
+{% endblock %}
