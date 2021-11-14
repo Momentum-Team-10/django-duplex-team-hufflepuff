@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 import debug_toolbar
 from code_snips import views
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
