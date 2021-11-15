@@ -24,8 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('', views.home_page, name='home_page'),
-    path('/user_page', views.user_page, name='user_page'),
-    path('code_view', views.code_view, name='code_view'),
+    path('user_page', views.user_page, name='user_page'),
+    path('code_view/<int:pk>', views.code_view, name='code_view'),
 ]
 
 if settings.DEBUG:

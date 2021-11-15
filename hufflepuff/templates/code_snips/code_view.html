@@ -3,21 +3,28 @@
 {% block content %}
 
 <div>
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib blue sans-serif" href={% url 'home_page' %}>Back to all snippets</a>
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#">Copy</a>
+    <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib gold sans-serif" href="#1">Favorite</a>
   <article class="center mw5 mw7-ns hidden ba mv4">
-    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">Snippet Title</h1>
+    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">{{snippet.title}}</h1>
     <div class="pa3 bt flex items-center">
-      <p class="f6 f5-ns lh-copy measure mv0 courier pr2 w-15">
+      <p class="f6 f5-ns lh-copy measure mv0 courier w-25 center">
         Description: 
       </p>
-      <p class="f6 f5-ns lh-copy measure mv0 courier pa2 w-85">
-        Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn. Ph''ai fm'latgh Shub-Niggurath naflfhtagn, y-stell'bsna y'hah uh'e nog lloig vulgtlagln hafh'drn nnnhupadgh ya, tharanak grah'n goka athg sll'ha uh'e nguln Nyarlathotep. 'fhalma h'lw'nafh h'n'gha mnahn' sgn'wahl lw'nafh sgn'wahl, mg Dagon ph'Yoggoth athgagl ftaghu n'gha naflstell'bsna, fm'latghagl chlirgh y-syha'h stell'bsnayar nggnaiih. 
+      <p class="f6 f5-ns lh-copy measure mv0 courier w-75">
+        {{snippet.description}}
+      </p>
+    </div>
+    <div class="pa3 bt flex items-center">
+      <p class="f6 f5-ns lh-copy measure mv0 courier w-25">
+        Tags:
+      </p>
+      <p class="f6 f5-ns lh-copy measure mv0 courier w-75">
+        Cthulhu
       </p>
     </div>
   </article>
-  <div class="">
-    <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
-    <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib blue sans-serif" href="#1">Favorite</a>
-  </div>
 </div>
 
 {% endblock %}
