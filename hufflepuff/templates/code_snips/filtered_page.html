@@ -15,7 +15,7 @@
   </article>
   <div class="flex flex-column">
     {% for tag in snippet.tags.all %}
-    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="#0">{{ tag }}</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="{% url 'filter_by_tag' tag=tag.name %}">{{ tag }}</a>
     {% endfor %}
   </div>
 </div>

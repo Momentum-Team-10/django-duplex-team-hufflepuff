@@ -1,14 +1,8 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %}
 
 {% block content %}
-<article class="">
-  <h1 class="sans-serif">
-    Your friendly, neighborhood code-bank.
-  </h1>
-  <h2 class="sans-serif">
-    Sign up for beta access or log in to your account.
-  </h2>
-</article>
+
+<h1>{{language}}</h1>
 
 {% for snippet in snippets %}
 <div class="flex items-center justify-center">
@@ -21,7 +15,7 @@
   </article>
   <div class="flex flex-column">
     {% for tag in snippet.tags.all %}
-    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="{% url 'filter_by_tag' tag=tag.name %}">{{ tag }}</a>
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="{% url 'filter_by' tag=tag.name %}">{{ tag }}</a>
     {% endfor %}
   </div>
 </div>

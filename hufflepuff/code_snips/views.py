@@ -14,7 +14,8 @@ def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   return render(request, 'code_snips/code_view.html', {"snippet": snippet})
 
-def filter_by(request, tag):
+def filter_by_tag(request, tag):
   snippets=Snippet.objects.filter(tags__name=tag)
   snippets.order_by('-created_at')
   return render(request, 'code_snips/filtered_page.html', {"snippets":snippets, "tag":tag})
+
