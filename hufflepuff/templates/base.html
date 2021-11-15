@@ -14,8 +14,7 @@
 
 <body>
   <header class="header bg-black b--white-10 flex items-center justify-between sans-serif">
-    {% comment %} fix href {% endcomment %}
-    <a href="{% url 'home_page' %}" class='f3 lh-title white items-center no-underline'>
+    <a href={% url 'home_page' %} class='f3 lh-title white items-center no-underline'>
       <h1 class='f3-ns lh-title white items-center'>
         <i class="fas fa-laptop-code white ph2 fa-lg sans-serif"></i>
         Code Snippets
@@ -39,6 +38,29 @@
       </div>
     </nav>
   </header>
+
+  <script type="text/javascript">
+  function OnSubmitForm() {
+    if(document.search_form.operation[2].checked == true) {
+      document.search_form.action = "{% url 'search_by_tag' %}";
+    } else if(document.search_form.operation[1].checked == true) {
+      document.search_form.action = "{% url 'search_by_language' %}";
+    } else {
+      document.search_form.action = "{% url 'search_by_title' %}";
+    }
+  }
+  </script>
+
+  <section class="ma1 snippet-search">
+    <form name="search_form" onsubmit="return OnSubmitForm();" method="GET" class="">
+      <input type="radio" name="operation" value="1" class="pa2" checked>By Title
+      <input type="radio" name="operation" value="2" class="pa2">By Language
+      <input type="radio" name="operation" value="3" class="pa2">By Tag
+      <input type="radio" name="operation" value="4" class="pa2" >By Contributor
+      <input type="text" class="input-reset ba b--black-20 pa2 mb2 db w-50" name="q">
+      <button type="submit" class="f6 link dim br-pill ba ph3 pv2 mb2 dib dark-gray">Search</button>
+    </form>
+  </section>
 
   <div class="ma3">
   {% block content %}
