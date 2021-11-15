@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Snippet
+from .forms import SnippetForm
 
 # Create your views here.
 
@@ -13,3 +14,31 @@ def user_page(request):
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   return render(request, 'code_snips/code_view.html', {"snippet": snippet})
+
+def add_snippet(request):
+  if request.method == 'GET':
+    form = SnippetForm()
+  else:
+    form = SnippetForm(data=request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('user_page')
+  return render(request, 'code_snips/add_snip.html', {'form': form})
+
+def edit_snippet(request, pk):
+  snippet = get_object_or_404(Snippet, pk=pk)
+  if request.method == 'GET':
+    form = SnippetForm(instance=snippet)
+  else:
+    form = SnippetForm(data=request.POST, instance=snippet)
+    if form.is_valid():
+      form.save()
+      return redirect('user_page')
+  return render(request, 'code_snips/edit_snip.html', {'form': form, 'snippet': snippet})
+
+def delete_snippet(request, pk):
+  snippet = get_object_or_404(Snippet, pk=pk)
+  if request.method == 'POST':
+    snippet.delete()
+    return redirect('user_page')
+  return render(request, 'code_snips/delete_snip.html', {'snippet': snippet})
