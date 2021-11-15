@@ -15,7 +15,7 @@ def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   return render(request, 'code_snips/code_view.html', {"snippet": snippet})
 
-def add_snippet(request):
+def add_snip(request):
   if request.method == 'GET':
     form = SnippetForm()
   else:
@@ -25,7 +25,7 @@ def add_snippet(request):
       return redirect('user_page')
   return render(request, 'code_snips/add_snip.html', {'form': form})
 
-def edit_snippet(request, pk):
+def edit_snip(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   if request.method == 'GET':
     form = SnippetForm(instance=snippet)
@@ -36,7 +36,7 @@ def edit_snippet(request, pk):
       return redirect('user_page')
   return render(request, 'code_snips/edit_snip.html', {'form': form, 'snippet': snippet})
 
-def delete_snippet(request, pk):
+def delete_snip(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   if request.method == 'POST':
     snippet.delete()
