@@ -39,6 +39,13 @@
     </nav>
   </header>
 
+  <section class="ma1 snippet-search">
+    <form action={% url 'search_by_language' %} method="GET">
+      <input type="text" class="input-reset ba b--black-20 pa2 mb2 db w-50" name="q">
+      <button type="submit" class="f6 link dim br-pill ba ph3 pv2 mb2 dib dark-gray">Search by language</button>
+    </form>
+  </section>
+
   <div class="ma3">
   {% block content %}
   {% endblock %}
