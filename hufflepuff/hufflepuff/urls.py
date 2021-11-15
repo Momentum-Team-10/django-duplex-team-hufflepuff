@@ -25,6 +25,9 @@ urlpatterns = [
     path('', views.home_page, name='home_page'),
     path('user_page/', views.user_page, name='user_page'),
     path('code_view/<int:pk>', views.code_view, name='code_view'),
+    path('snips/add/', views.add_snip, name='add_snip'),
+    path('snips/<int:pk>/edit/', views.edit_snip, name='edit_snip'),
+    path('snips/<int:pk>/delete/', views.delete_snip, name='delete_snip'),
 ]
 
 if settings.DEBUG:
