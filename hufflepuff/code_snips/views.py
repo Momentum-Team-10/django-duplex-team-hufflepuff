@@ -19,3 +19,8 @@ def filter_by_tag(request, tag):
   snippets.order_by('-created_at')
   return render(request, 'code_snips/filtered_page.html', {"snippets":snippets, "tag":tag})
 
+def filter_by_language(request, language):
+  snippets=Snippet.objects.filter(language__name=language)
+  snippets.order_by('-created_at')
+  return render(request, 'code_snips/by_language.html', {"snippets":snippets, "language":language})
+
