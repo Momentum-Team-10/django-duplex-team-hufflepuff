@@ -22,9 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/', include(debug_toolbar.urls)),
     path('', views.home_page, name='home_page'),
-    path('user_page', views.user_page, name='user_page'),
+    path('user_page/', views.user_page, name='user_page'),
     path('code_view/<int:pk>', views.code_view, name='code_view'),
 ]
 
@@ -32,7 +31,4 @@ if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns = [
-        path("__debug__/", include(debug_toolbar.urls)),
-        # For django versions before 2.0:
-        # url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+        path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
