@@ -8,7 +8,8 @@ def home_page(request):
   return render(request, 'code_snips/home.html', {"snippets": snippets})
 
 def user_page(request):
-  return render(request, 'code_snips/user_page.html')
+  snippets=Snippet.objects.filter(favorited=True)
+  return render(request, 'code_snips/user_page.html', {"snippets": snippets})
 
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
