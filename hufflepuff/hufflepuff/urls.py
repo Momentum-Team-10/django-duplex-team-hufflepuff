@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.home_page, name='home_page'),
     path('user_page/', views.user_page, name='user_page'),
     path('code_view/<int:pk>', views.code_view, name='code_view'),
+    path('snippets/<str:tag>', views.filter_by, name='filter_by'),
 ]
 
 if settings.DEBUG:
