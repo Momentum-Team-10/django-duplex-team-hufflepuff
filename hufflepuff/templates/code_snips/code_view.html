@@ -26,13 +26,12 @@
         {% endfor %}
       </p>
     </div>
-    <div class="pa3 bt flex items-center">
-      {% for comment in comments %}
-      <p>{{ comment.user }}</p>
-      <p>{{ comment.created_at }}</p>
+    {% for comment in comments %}
+    <div class="pa3 bt flex items-center justify-between sans-serif">
+      <p>{{ comment.user }} | {{ comment.created_at }}</p>
       <p>{{ comment.text }}</p>
-      {% endfor %}
     </div>
+    {% endfor %}
   </article>
 </div>
 
