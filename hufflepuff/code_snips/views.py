@@ -1,6 +1,6 @@
 from django.db.models import query
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Snippet
+from .models import Snippet, Comment
 from .forms import SnippetForm
 
 # Create your views here.
@@ -15,7 +15,8 @@ def user_page(request):
 
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
-  return render(request, 'code_snips/code_view.html', {"snippet": snippet})
+  comments = Comment.objects.filter(snippet=snippet)
+  return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments})
 
 def add_snip(request):
   if request.method == 'GET':

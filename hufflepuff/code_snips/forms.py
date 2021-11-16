@@ -1,5 +1,5 @@
 from django import forms
-from code_snips.models import Snippet
+from code_snips.models import Comment, Snippet
 
 
 class SnippetForm(forms.ModelForm):
@@ -12,3 +12,9 @@ class SnippetForm(forms.ModelForm):
             'language',
             'tags',
         ]
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']

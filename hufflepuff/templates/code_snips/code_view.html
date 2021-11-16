@@ -21,8 +21,17 @@
         Tags:
       </p>
       <p class="f6 f5-ns lh-copy measure mv0 courier w-75">
-        Cthulhu
+        {% for tag in snippet.tags.all %}
+        {{ tag }}
+        {% endfor %}
       </p>
+    </div>
+    <div class="pa3 bt flex items-center">
+      {% for comment in comments %}
+      <p>{{ comment.user }}</p>
+      <p>{{ comment.created_at }}</p>
+      <p>{{ comment.text }}</p>
+      {% endfor %}
     </div>
   </article>
 </div>
