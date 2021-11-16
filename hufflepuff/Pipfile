@@ -9,6 +9,7 @@ django-environ = "*"
 django-extensions = "*"
 django-debug-toolbar = "*"
 django-autoslug = "*"
+django-registration-redux = "*"
 
 [dev-packages]
 

@@ -6,8 +6,9 @@ from .forms import SnippetForm
 # Create your views here.
 
 def home_page(request):
+  user = request.user
   snippets = Snippet.objects.all()[0:5]
-  return render(request, 'code_snips/home.html', {"snippets": snippets})
+  return render(request, 'code_snips/home.html', {"snippets": snippets, "user":user})
 
 def user_page(request):
   snippets=Snippet.objects.filter(favorited=True)
