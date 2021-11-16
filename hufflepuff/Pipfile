@@ -9,6 +9,7 @@ django-environ = "*"
 django-extensions = "*"
 django-debug-toolbar = "*"
 django-autoslug = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

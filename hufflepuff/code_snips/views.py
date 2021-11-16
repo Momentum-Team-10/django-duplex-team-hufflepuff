@@ -16,14 +16,16 @@ def user_page(request):
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   comments = Comment.objects.filter(snippet=snippet).order_by('-created_at')
-  user = request.user
   if request.method == 'GET':
     form = CommentForm()
   else:
     form = CommentForm(data=request.POST)
     if form.is_valid():
-      form.save()
-  return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments})
+      comment_form = form.save(commit=False)
+      comment_form.user = request.user
+      comment_form.snippet = snippet
+      comment_form.save()
+  return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments, "form": form})
 
 def add_snip(request):
   if request.method == 'GET':

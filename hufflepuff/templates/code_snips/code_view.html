@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -25,6 +26,13 @@
         {{ tag }}
         {% endfor %}
       </p>
+    </div>
+    <div class="pa3 bt flex items-center justify-between courier">
+      <form action="{% url 'code_view' pk=snippet.pk %}" method='POST'>
+        {% csrf_token %}
+        {{ form.text }}
+        <button type='submit'>Reply</button>
+      </form>
     </div>
     {% for comment in comments %}
     <div class="pa3 bt flex items-center justify-between sans-serif">
