@@ -33,7 +33,7 @@
         {% else %}
         {% comment %} fix href {% endcomment %}
         <a class="f4 fw6 db gray link dim" href="{% url 'auth_login' %}">Login</a>
-        <a class="f4 fw6 db gray link dim" href="#">Sign Up</a>
+        <a class="f4 fw6 db gray link dim" href="{% url 'registration_register' %}">Sign Up</a>
         {% endif %}
       </div>
     </nav>
