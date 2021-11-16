@@ -17,9 +17,9 @@ class Snippet(models.Model):
     description = models.TextField()
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING)
+    # need to remove default from created_by Foreign Key
+    created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING, default=1)
     language = models.ForeignKey('Language', on_delete=models.CASCADE)
-    libraries = models.ManyToManyField('Library', related_name='snippets', blank=True)
     tags = models.ManyToManyField('Tag', related_name="snippets", blank=True)
     favorited = models.ManyToManyField('User', related_name="snippets", blank=True)
 
@@ -47,17 +47,6 @@ class Tag(models.Model):
 
     def __repr__(self):
         return f"<Tag name={self.name}>"
-
-    def __str__(self):
-        return self.name
-
-
-class Library(models.Model):
-    name = models.CharField(max_length = 75)
-    slug = AutoSlugField(populate_from='name')
-
-    def __repr__(self):
-        return f"<Library name={self.name}>"
 
     def __str__(self):
         return self.name

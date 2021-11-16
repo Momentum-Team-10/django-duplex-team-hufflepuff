@@ -24,12 +24,13 @@
     <nav class="flex bb">
       <div class="flex-grow pa3 flex items-center">
         {% if user.is_authenticated %}
-        <p class="f4 fw6 white pr2 sans-serif ph6">Hello, {{user.username}}!</p>
-        <img src="https://avatars.githubusercontent.com/u/75756310?v=4"
-          class="br4 h3 w3 dib" alt="avatar">
-        <a class="f4 fw6 db light-gray link dim" href="{% url 'user_page'  %}">Favorites |</a>
-        {% comment %} fix hrefs {% endcomment %}
-        <a class="f4 fw6 db light-gray link dim ph1" href="{% url 'auth_logout' %}">Logout</a>
+        <div class="ph4 pv0 tc">
+          <a href="{% url 'user_page' %}"><img
+            src="https://avatars.githubusercontent.com/u/75756310?v=4"
+            class="br4 h3 w3 dib" alt="avatar"></a>
+          <h2 class="f5 f4-ns fw6 light-gray sans-serif">UserName</h2>
+        </div>
+        <a class="f4 fw6 db light-gray link dim ph1" href="#0">Logout</a>
         {% else %}
         {% comment %} fix href {% endcomment %}
         <a class="f4 fw6 db gray link dim" href="{% url 'auth_login' %}">Login</a>

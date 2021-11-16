@@ -1,6 +1,5 @@
 from django import forms
 from code_snips.models import Snippet
-import models
 
 
 class SnippetForm(forms.ModelForm):
@@ -10,7 +9,6 @@ class SnippetForm(forms.ModelForm):
             'title',
             'description',
             'text',
-            'libraries',
             'language',
             'tags',
         ]
