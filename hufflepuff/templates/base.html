@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+  <header class="header bg-black b--white-10 flex items-center justify-between sans-serif">
+    <a href={% url 'home_page' %} class='f3 lh-title white items-center no-underline'>
+      <h1 class='f3-ns lh-title white items-center'>
+        <i class="fas fa-laptop-code white ph2 fa-lg sans-serif"></i>
+        Code Snippets
+      </h1>
+    </a>
+
+    <nav class="flex bb">
+      <div class="flex-grow pa3 flex items-center">
+        {% if user.is_authenticated %}
+        <div class="ph4 pv0 tc">
+          <a href="{% url 'user_page' %}"><img
+            src="https://avatars.githubusercontent.com/u/75756310?v=4"
+            class="br4 h3 w3 dib" alt="avatar"></a>
+          <h2 class="f5 f4-ns fw6 light-gray sans-serif">UserName</h2>
+        </div>
+        <a class="f4 fw6 db light-gray link dim ph1" href="#0">Logout</a>
+        {% else %}
+        <a class="f4 fw6 db gray link dim" href="#">Login |</a>
+        <a class="f4 fw6 db gray link dim" href="#"> Sign Up</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <script type="text/javascript">
+  function OnSubmitForm() {
+    if(document.search_form.operation[2].checked == true) {
+      document.search_form.action = "{% url 'search_by_tag' %}";
+    } else if(document.search_form.operation[1].checked == true) {
+      document.search_form.action = "{% url 'search_by_language' %}";
+    } else {
+      document.search_form.action = "{% url 'search_by_title' %}";
+    }
+  }
+  </script>
+
+  <section class="ma1 snippet-search">
+    <form name="search_form" onsubmit="return OnSubmitForm();" method="GET" class="">
+      <input type="radio" name="operation" value="1" class="pa2" checked>By Title
+      <input type="radio" name="operation" value="2" class="pa2">By Language
+      <input type="radio" name="operation" value="3" class="pa2">By Tag
+      <input type="radio" name="operation" value="4" class="pa2" >By Contributor
+      <input type="text" class="input-reset ba b--black-20 pa2 mb2 db w-50" name="q">
+      <button type="submit" class="f6 link dim br-pill ba ph3 pv2 mb2 dib dark-gray">Search</button>
+    </form>
+  </section>
+
+  <div class="ma3">
+  {% block content %}
+  {% endblock %}
+  </div>
+
+</body>
+
+</html>

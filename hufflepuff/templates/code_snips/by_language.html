@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% load static %}
+
+{% block content %}
+
+<h1 class='sans-serif'>{{language}}</h1>
+
+{% for snippet in snippets %}
+<div class="flex items-center justify-center">
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
+  <article class="mh2 hidden mv4 m0">
+    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier"><a class="link dim light-grey" href="{% url 'filter_by_language' language=snippet.language %}">{{ snippet.language }}</a></h1>
+    <div class="pa3 ba">
+      <p class="f6 f5-ns lh-copy measure mv0 courier">{{ snippet.text }}</p>
+    </div>
+  </article>
+  <div class="flex flex-column">
+    {% for tag in snippet.tags.all %}
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="{% url 'filter_by_tag' tag=tag.name %}">{{ tag }}</a>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
