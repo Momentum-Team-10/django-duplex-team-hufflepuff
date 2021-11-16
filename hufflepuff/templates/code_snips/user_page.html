@@ -19,11 +19,11 @@
   <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
   <article class="mh2 hidden mv4 m0">
     <div class="flex">
-      <h1 class=" f4 bg-near-black mw5 mv0 pv2 ph3 sans-serif"><a class="link dim light-gray sans-serif" href="{% url 'filter_by_language' language=snippet.language %}">{{ snippet.language }}</a></h1>
+      <h1 class=" f4 bg-near-black mw5 mv0 pv2 ph3 sans-serif"><a class="link dim light-gray sans-serif" href="{% url 'filter_by_language' language=snippet.language %}">{{ snippet.language }}</a></h>
       <h1 class=" f4 black mw5 mv0 pv2 ph3 sans-serif bt br bl">{{ snippet.title }}</h1>
     </div>
     <div class="pa3 ba">
-      <pre class="f6 f5-ns lh-copy mv0 courier">{{ snippet.text }}</pre>
+      <pre class="language-python"><code>{{ snippet.text }}</code></pre>
     </div>
   </article>
   <div class="flex flex-column">
