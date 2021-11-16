@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated == False %}
 <article class="">
   <h1 class="sans-serif">
     Your friendly, neighborhood code-bank.
   </h1>
-  {% if user.is_authenticated %}
   <h2 class="sans-serif">
     Sign up for beta access or log in to your account.
   </h2>
-  {% endif %}
 </article>
+{% endif %}
 
 {% for snippet in snippets %}
 <div class="flex items-center justify-center">
