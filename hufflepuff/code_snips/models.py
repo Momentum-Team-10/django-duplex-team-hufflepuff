@@ -17,7 +17,8 @@ class Snippet(models.Model):
     description = models.TextField()
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING)
+    # need to remove default from created_by Foreign Key
+    created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING, default=1)
     language = models.ForeignKey('Language', on_delete=models.CASCADE)
     libraries = models.ManyToManyField('Library', related_name='snippets', blank=True)
     tags = models.ManyToManyField('Tag', related_name="snippets", blank=True)

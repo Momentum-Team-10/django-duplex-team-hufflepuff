@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit {{ snippet.title }}</h1>
+
+<div>
+    <form action="{% url 'edit_snip' pk=snippet.pk %}", method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
