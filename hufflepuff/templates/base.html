@@ -30,10 +30,10 @@
             class="br4 h3 w3 dib" alt="avatar"></a>
           <h2 class="f5 f4-ns fw6 light-gray sans-serif">UserName</h2>
         </div>
-        <a class="f4 fw6 db light-gray link dim ph1" href="#0">Logout</a>
+        <a class="f4 fw6 db light-gray link dim ph1" href="{% url 'auth_logout' %}">Logout</a>
         {% else %}
-        <a class="f4 fw6 db gray link dim" href="#">Login |</a>
-        <a class="f4 fw6 db gray link dim" href="#"> Sign Up</a>
+        <a class="f4 fw6 db gray link dim" href="{% url 'auth_login' %}">Login</a>
+        <a class="f4 fw6 db gray link dim" href="{% url 'registration_register' %}">Sign Up</a>
         {% endif %}
       </div>
     </nav>
@@ -45,6 +45,8 @@
       document.search_form.action = "{% url 'search_by_tag' %}";
     } else if(document.search_form.operation[1].checked == true) {
       document.search_form.action = "{% url 'search_by_language' %}";
+    } else if(document.search_form.operation[3].checked == true){
+      document.search_form.action = "{% url 'search_by_user' %}";
     } else {
       document.search_form.action = "{% url 'search_by_title' %}";
     }
