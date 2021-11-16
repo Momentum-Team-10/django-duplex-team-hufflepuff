@@ -72,7 +72,7 @@ def search_by_language(request):
 
 def search_by_tag(request):
   query = request.GET.get("q")
-  results = Snippet.objects.filter(tag__name__icontains=query)
+  results = Snippet.objects.filter(tags__name__icontains=query)
   return render(request, "code_snips/home.html", {"snippets": results})
 
 def search_by_user(request):
