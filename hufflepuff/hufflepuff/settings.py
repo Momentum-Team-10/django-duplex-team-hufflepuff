@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     'registration',
+    'widget_tweaks',
     'code_snips',
 ]
 
