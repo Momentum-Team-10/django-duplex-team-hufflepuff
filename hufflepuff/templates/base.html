@@ -29,15 +29,17 @@
       <div class="flex-grow pt3 pr4 flex items-center">
         {% if user.is_authenticated %}
         <div class="ph4 pv0 tc">
+          {% if user.avatar %}
           <a href="{% url 'user_page' %}"><img
-            src="https://avatars.githubusercontent.com/u/75756310?v=4"
+            src="{{user.avatar}}"
             class="br4 h3 w3 dib" alt="avatar"></a>
-          <h2 class="f5 f4-ns fw6 ma0 mb2 light-gray sans-serif">{{user.username}}</h2>
+          {% endif %}
+          <a class="f4 fw6 db light-gray link dim pb4 pt3" href="{% url 'user_page' %}">{{user.username}}</a>
         </div>
-        <a class="f4 fw6 db light-gray link dim ph1" href="{% url 'auth_logout' %}">Logout</a>
+        <a class="f4 fw6 db light-gray link dim pr3 pb4 pt3" href="{% url 'auth_logout' %}">Logout</a>
         {% else %}
-        <a class="f4 fw6 db gray link dim" href="{% url 'auth_login' %}">Login</a>
-        <a class="f4 fw6 db gray link dim" href="{% url 'registration_register' %}">Sign Up</a>
+        <a class="f4 fw6 db light-gray link dim ph1 pb4 pt3" href="{% url 'auth_login' %}">Login</a>
+        <a class="f4 fw6 db light-gray link dim pr3 pl3 pb4 pt3" href="{% url 'registration_register' %}">Sign Up</a>
         {% endif %}
       </div>
     </nav>

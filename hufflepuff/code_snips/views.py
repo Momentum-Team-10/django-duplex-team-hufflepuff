@@ -1,5 +1,6 @@
 from django.db.models import query
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Snippet, Comment
 from .forms import SnippetForm, CommentForm
 
@@ -10,6 +11,7 @@ def home_page(request):
   snippets = Snippet.objects.all()[0:5]
   return render(request, 'code_snips/home.html', {"snippets": snippets, "user":user})
 
+@login_required
 def user_page(request):
   snippets=Snippet.objects.filter(favorited=True)
   return render(request, 'code_snips/user_page.html', {"snippets": snippets})
