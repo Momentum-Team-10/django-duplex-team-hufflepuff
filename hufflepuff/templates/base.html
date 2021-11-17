@@ -36,8 +36,8 @@
         </div>
         <a class="f4 fw6 db light-gray link dim ph1" href="{% url 'auth_logout' %}">Logout</a>
         {% else %}
-        <a class="f4 fw6 db gray link dim" href="{% url 'auth_login' %}">Login</a>
-        <a class="f4 fw6 db gray link dim" href="{% url 'registration_register' %}">Sign Up</a>
+        <a class="f4 fw6 db light-gray link dim ph2 pb4 pt3" href="{% url 'auth_login' %}">Login</a>
+        <a class="f4 fw6 db light-gray link dim ph2 pb4 pt3" href="{% url 'registration_register' %}">Sign Up</a>
         {% endif %}
       </div>
     </nav>

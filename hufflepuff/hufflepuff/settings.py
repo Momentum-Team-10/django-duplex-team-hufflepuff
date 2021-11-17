@@ -135,6 +135,9 @@ INTERNAL_IPS = ['127.0.0.1',]
 AUTH_USER_MODEL = "code_snips.User"
 
 # django-registration-redux
+REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 5
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = "/"
+
+EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
