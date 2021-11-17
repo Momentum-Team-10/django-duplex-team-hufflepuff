@@ -1,4 +1,5 @@
 from django.db.models import query
+from django.http.response import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Snippet, Comment
@@ -18,6 +19,7 @@ def user_page(request):
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   comments = Comment.objects.filter(snippet=snippet).order_by('-created_at')
+  user = request.user
   if request.method == 'GET':
     form = CommentForm()
   else:
@@ -27,7 +29,7 @@ def code_view(request, pk):
       comment_form.user = request.user
       comment_form.snippet = snippet
       comment_form.save()
-  return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments, "form": form})
+  return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments, "form": form, "user": user, "pk":pk,})
 
 def add_snip(request):
   if request.method == 'GET':
@@ -92,3 +94,21 @@ def search_by_user(request):
   query = request.GET.get("q")
   results = Snippet.objects.filter(created_by__username__icontains=query)
   return render(request, "code_snips/home.html", {"snippets": results})
+
+@login_required
+def favorite_snippet(request, pk):
+  user = request.user
+  snippet = get_object_or_404(Snippet, pk=pk)
+
+  if request.method == "DELETE":
+    snippet.favorited.remove(user)
+    favorited = False
+  elif request.method == "POST":
+    snippet.favorited.add(user)
+    favorited = True
+
+  # Lazy non-seperated check if request is ajax
+  if(request.headers.get("x-requested-with") == "XMLHttpRequest"):
+    return JsonResponse({"favorited": favorited })
+
+  return redirect("code_view", pk=pk)
