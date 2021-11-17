@@ -1,10 +1,8 @@
-buttons = document.getElementsByClassName("copy")
-
+const buttons = document.getElementsByClassName("copy")
 for (let button of buttons) {
-    button.addEventListener("mouseover", (e) => {
-        console.log("On Copy Button")
-    })
-    button.addEventListener("mouseout", (e) => {
-        console.log("Off Copy Button")
+    button.addEventListener("click", () => {
+        const parent = button.parentNode;
+        const codeBlock = parent.querySelector('code');
+        navigator.clipboard.writeText(codeBlock.innerText);
     })
 }
