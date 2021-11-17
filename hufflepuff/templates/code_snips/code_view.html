@@ -30,7 +30,7 @@
     <div class="pa3 bt flex items-center justify-between courier">
       <form action="{% url 'code_view' pk=snippet.pk %}" method='POST'>
         {% csrf_token %}
-        {{ form.text }}
+        {{ form.text|attr:"rows:3"|attr:"columns:30"|attr:"placeholder:Reply Here" }}
         <button type='submit'>Reply</button>
       </form>
     </div>
