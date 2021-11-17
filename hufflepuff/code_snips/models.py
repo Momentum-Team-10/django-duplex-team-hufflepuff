@@ -21,7 +21,7 @@ class Snippet(models.Model):
     created_by = models.ForeignKey('User', on_delete=models.DO_NOTHING, default=1)
     language = models.ForeignKey('Language', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag', related_name="snippets", blank=True)
-    favorited = models.ManyToManyField('User', related_name="snippets", blank=True)
+    favorited = models.ManyToManyField(User, related_name="favorite_snippets")
 
     def __repr__(self):
         return f"<Snippet title={self.title}>"

@@ -35,6 +35,7 @@ urlpatterns = [
     path('language_search', views.search_by_language, name='search_by_language'),
     path('tag_search', views.search_by_tag, name='search_by_tag'),
     path('user_search', views.search_by_user, name='search_by_user'),
+    path("code_view/<int:pk>/favorite", views.favorite_snippet, name="favorite_snippet"),
 ]
 
 if settings.DEBUG:
