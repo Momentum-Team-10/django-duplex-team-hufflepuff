@@ -1,12 +1,17 @@
 {% extends "base.html" %} {% load static %}
 
+{% block javascript %}
+<script src="{% static 'js/prism.js' %}" defer></script>
+<script src="{% static 'js/copy_function.js' %}" defer></script>
+{% endblock javascript %}
+
 {% block content %}
 
 <h1 class='sans-serif'>{{language}}</h1>
 
 {% for snippet in snippets %}
 <div class="flex items-center justify-center">
-  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#0">Copy</a>
+  <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif">Copy</a>
   <article class="mh2 hidden mv4 m0">
     <div class="flex">
       <h1 class=" f4 bg-near-black mw5 mv0 pv2 ph3 sans-serif"><a class="link dim light-gray sans-serif" href="{% url 'filter_by_language' language=snippet.language %}">{{ snippet.language }}</a></h1>

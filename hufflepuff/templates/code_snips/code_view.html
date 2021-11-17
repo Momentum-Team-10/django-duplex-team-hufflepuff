@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block javascript %}
+<script src="{% static 'js/prism.js' %}" defer></script>
+<script src="{% static 'js/copy_function.js' %}" defer></script>
+{% endblock javascript %}
+
 {% load widget_tweaks %}
 
 {% load static %}
@@ -11,13 +18,16 @@
 
 <div>
   <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib blue sans-serif" href={% url 'home_page' %}>Back to all snippets</a>
-  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="#">Copy</a>
+  <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif">Copy</a>
   <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib green sans-serif" href="#">Clone</a>
   <a href={% url "favorite_snippet" pk=snippet.pk %} class="fav-link" data-favorited={{favorited}}>
     <i class="{% if favorited %} fas {% else %} far {% endif %} fa-star gold f3"></i>
   </a>
   <article class="center mw5 mw7-ns hidden ba mv4">
     <h1 class=" f4 bg-near-black white tc mv0 pv2 ph3 courier">{{snippet.title}}</h1>
+    <div class="pa3 bt flex items-center">
+      <pre class="language-python mw8"><code>{{ snippet.text }}</code></pre>
+    </div>
     <div class="pa3 bt flex items-center">
       <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
         Description: 
