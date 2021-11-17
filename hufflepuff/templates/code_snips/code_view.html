@@ -14,7 +14,7 @@
 <div>
   <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib blue sans-serif" href={% url 'home_page' %}>Back to all snippets</a>
   <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif">Copy</a>
-  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib green sans-serif" href="#">Clone</a>
+  <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib green sans-serif" href="{% url 'clone_snippet' pk=snippet.pk %}">Clone</a>
   <a href={% url "favorite_snippet" pk=snippet.pk %} class="fav-link" data-favorited={{favorited}}>
     <i class="{% if favorited %} fas {% else %} far {% endif %} fa-star gold f3"></i>
   </a>

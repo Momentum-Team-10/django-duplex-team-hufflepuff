@@ -36,6 +36,7 @@ urlpatterns = [
     path('tag_search/', views.search_by_tag, name='search_by_tag'),
     path('user_search/', views.search_by_user, name='search_by_user'),
     path("code_view/<int:pk>/favorite/", views.favorite_snippet, name="favorite_snippet"),
+    path("code_view/<int:pk>/clone/", views.clone_snippet, name="clone_snippet"),
 ]
 
 if settings.DEBUG:
