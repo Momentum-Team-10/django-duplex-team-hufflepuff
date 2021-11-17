@@ -1,18 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="mw9 center ph3-ns">
-  <div class="cf ph2-ns">
-    <div class="fl w-100 w-25-ns pa2 pt5">
-      <label for="name" class="f6 b db mb2 sans-serif">Search Snips</label>
-      <input id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-    </div>
-    <div class="fl w-100 w-75-ns pa2 pl7">
-      <h1 class="f2 f2-m f1-l fw2 black-90 mv3 sans-serif pr5 pt4">
-        Saved Snips
-      </h1>
-    </div>
-  </div>
+
+<div class="flex justify-center">
+  <h1 class="f2 f2-m f1-l fw2 black-90 mv3 sans-serif pr5 pt4">
+    Saved Snips
+  </h1>
+</div>
+  
 </div>
 {% for snippet in snippets %}
 <div class="flex items-center justify-center">

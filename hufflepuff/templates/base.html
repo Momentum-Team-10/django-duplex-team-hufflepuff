@@ -19,20 +19,20 @@
 <body>
   <header class="header bg-black b--white-10 flex items-center justify-between sans-serif">
     <a href={% url 'home_page' %} class='f3 lh-title white items-center no-underline'>
-      <h1 class='f3-ns lh-title white items-center'>
+      <h1 class='f3-ns pl4 lh-title white items-center'>
         <i class="fas fa-laptop-code white ph2 fa-lg sans-serif"></i>
         Code Snippets
       </h1>
     </a>
 
     <nav class="flex bb">
-      <div class="flex-grow pa3 flex items-center">
+      <div class="flex-grow pt3 pr4 flex items-center">
         {% if user.is_authenticated %}
         <div class="ph4 pv0 tc">
           <a href="{% url 'user_page' %}"><img
             src="https://avatars.githubusercontent.com/u/75756310?v=4"
             class="br4 h3 w3 dib" alt="avatar"></a>
-          <h2 class="f5 f4-ns fw6 light-gray sans-serif">{{user.self}}</h2>
+          <h2 class="f5 f4-ns fw6 ma0 mb2 light-gray sans-serif">{{user.username}}</h2>
         </div>
         <a class="f4 fw6 db light-gray link dim ph1" href="{% url 'auth_logout' %}">Logout</a>
         {% else %}
@@ -59,12 +59,12 @@
 
   <section class="ma1 snippet-search">
     <form name="search_form" onsubmit="return OnSubmitForm();" method="GET" class="">
-      <input type="radio" name="operation" value="1" class="pa2" checked>By Title
-      <input type="radio" name="operation" value="2" class="pa2">By Language
-      <input type="radio" name="operation" value="3" class="pa2">By Tag
-      <input type="radio" name="operation" value="4" class="pa2" >By Contributor
+      <input type="radio" name="operation" value="1" class="pa2 sans-serif" checked>By Title</input>
+      <input type="radio" name="operation" value="2" class="pa2 sans-serif">By Language</input>
+      <input type="radio" name="operation" value="3" class="pa2 sans-serif">By Tag</input>
+      <input type="radio" name="operation" value="4" class="pa2 sans-serif" >By Contributor</input>
       <input type="text" class="input-reset ba b--black-20 pa2 mb2 db w-50" name="q">
-      <button type="submit" class="f6 link dim br-pill ba ph3 pv2 mb2 dib dark-gray">Search</button>
+      <button type="submit" class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif">Search</button>
     </form>
   </section>
 
