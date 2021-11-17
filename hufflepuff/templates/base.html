@@ -29,15 +29,17 @@
       <div class="flex-grow pt3 pr4 flex items-center">
         {% if user.is_authenticated %}
         <div class="ph4 pv0 tc">
+          {% if user.avatar %}
           <a href="{% url 'user_page' %}"><img
-            src="https://avatars.githubusercontent.com/u/75756310?v=4"
+            src="{{user.avatar}}"
             class="br4 h3 w3 dib" alt="avatar"></a>
-          <h2 class="f5 f4-ns fw6 ma0 mb2 light-gray sans-serif">{{user.username}}</h2>
+          {% endif %}
+          <a class="f4 fw6 db light-gray link dim pb4 pt3" href="{% url 'user_page' %}">{{user.username}}</a>
         </div>
-        <a class="f4 fw6 db light-gray link dim ph1" href="{% url 'auth_logout' %}">Logout</a>
+        <a class="f4 fw6 db light-gray link dim pr3 pb4 pt3" href="{% url 'auth_logout' %}">Logout</a>
         {% else %}
-        <a class="f4 fw6 db gray link dim" href="{% url 'auth_login' %}">Login</a>
-        <a class="f4 fw6 db gray link dim" href="{% url 'registration_register' %}">Sign Up</a>
+        <a class="f4 fw6 db light-gray link dim ph1 pb4 pt3" href="{% url 'auth_login' %}">Login</a>
+        <a class="f4 fw6 db light-gray link dim pr3 pl3 pb4 pt3" href="{% url 'registration_register' %}">Sign Up</a>
         {% endif %}
       </div>
     </nav>
@@ -57,13 +59,13 @@
   }
   </script>
 
-  <section class="ma1 snippet-search">
+  <section class="ma3 snippet-search">
     <form name="search_form" onsubmit="return OnSubmitForm();" method="GET" class="">
-      <input type="radio" name="operation" value="1" class="pa2 sans-serif" checked>By Title</input>
-      <input type="radio" name="operation" value="2" class="pa2 sans-serif">By Language</input>
-      <input type="radio" name="operation" value="3" class="pa2 sans-serif">By Tag</input>
-      <input type="radio" name="operation" value="4" class="pa2 sans-serif" >By Contributor</input>
-      <input type="text" class="input-reset ba b--black-20 pa2 mb2 db w-50" name="q">
+      <input type="radio" name="operation" value="1" checked><span class="pa2 sans-serif">By Title</span></input>
+      <input type="radio" name="operation" value="2" class="pa2 sans-serif"><span class="pa2 sans-serif">By Language</span></input>
+      <input type="radio" name="operation" value="3" class="pa2 sans-serif"><span class="pa2 sans-serif">By Tag</span></input>
+      <input type="radio" name="operation" value="4" class="pa2 sans-serif" ><span class="pa2 sans-serif">By Contributor</span></input>
+      <input type="text" class="input-reset ba b--black-20 pa2 ma2 db w-25" name="q">
       <button type="submit" class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif">Search</button>
     </form>
   </section>

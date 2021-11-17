@@ -1,8 +1,8 @@
 from django.db.models import query
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Snippet
-from .forms import SnippetForm
-
+from django.contrib.auth.decorators import login_required
+from .models import Snippet, Comment
+from .forms import SnippetForm, CommentForm
 # Create your views here.
 
 def home_page(request):
@@ -10,13 +10,24 @@ def home_page(request):
   snippets = Snippet.objects.all()[0:5]
   return render(request, 'code_snips/home.html', {"snippets": snippets, "user":user})
 
+@login_required
 def user_page(request):
   snippets=Snippet.objects.filter(favorited=True)
   return render(request, 'code_snips/user_page.html', {"snippets": snippets})
 
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
-  return render(request, 'code_snips/code_view.html', {"snippet": snippet})
+  comments = Comment.objects.filter(snippet=snippet).order_by('-created_at')
+  if request.method == 'GET':
+    form = CommentForm()
+  else:
+    form = CommentForm(data=request.POST)
+    if form.is_valid():
+      comment_form = form.save(commit=False)
+      comment_form.user = request.user
+      comment_form.snippet = snippet
+      comment_form.save()
+  return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments, "form": form})
 
 def add_snip(request):
   if request.method == 'GET':
@@ -24,7 +35,9 @@ def add_snip(request):
   else:
     form = SnippetForm(data=request.POST)
     if form.is_valid():
-      form.save()
+      snippet_form = form.save(commit=False)
+      snippet_form.user = request.user
+      snippet_form.save()
       return redirect('user_page')
   return render(request, 'code_snips/add_snip.html', {'form': form})
 
