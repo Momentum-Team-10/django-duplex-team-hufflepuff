@@ -27,12 +27,16 @@
         {% endfor %}
       </p>
     </div>
-    <div class="pa3 ba flex">
+    <div class="pa3 bt br bl flex">
       <p class="f6 f5-ns lh-copy mv0 courier w-25">
         Code:
       </p>
       <pre class="language-{{ snippet.language.slug }} mw8"><code>{{ snippet.text }}</code></pre>
-    </div>
+    </div class="pa3 bb br bl fles juistify-center">
+    {% if user == sinppet.created_by__username or user.is_staff %}
+    <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib gold sans-serif" href="{% url 'edit_snip' pk=pk %}">Edit</a>
+    <a class="f6 grow no-underline br3 ba bw2 ph3 pv2 mb2 dib black" href="{% url 'delete_snip' pk=pk %}">Delete</a>
+    {% endif %}
     <div class="pa3 bt flex items-center justify-between courier">
       <form action="{% url 'code_view' pk=snippet.pk %}" method='POST'>
         {% csrf_token %}
@@ -52,6 +56,7 @@
     </div>
     {% endfor %}
   </article>
+
 </div>
 
 {% endblock %}
