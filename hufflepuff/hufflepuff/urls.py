@@ -29,12 +29,12 @@ urlpatterns = [
     path('snips/add/', views.add_snip, name='add_snip'),
     path('snips/<int:pk>/edit/', views.edit_snip, name='edit_snip'),
     path('snips/<int:pk>/delete/', views.delete_snip, name='delete_snip'),
-    path('snippets/<str:tag>', views.filter_by_tag, name='filter_by_tag'),
-    path('snippets/language/<str:language>', views.filter_by_language, name='filter_by_language'),
-    path('title_search', views.search_by_title, name='search_by_title'),
-    path('language_search', views.search_by_language, name='search_by_language'),
-    path('tag_search', views.search_by_tag, name='search_by_tag'),
-    path('user_search', views.search_by_user, name='search_by_user'),
+    path('snippets/<str:tag>/', views.filter_by_tag, name='filter_by_tag'),
+    path('snippets/language/<str:language>/', views.filter_by_language, name='filter_by_language'),
+    path('title_search/', views.search_by_title, name='search_by_title'),
+    path('language_search/', views.search_by_language, name='search_by_language'),
+    path('tag_search/', views.search_by_tag, name='search_by_tag'),
+    path('user_search/', views.search_by_user, name='search_by_user'),
 ]
 
 if settings.DEBUG:
