@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% load static %}
 
@@ -16,23 +17,50 @@
     <i class="{% if favorited %} fas {% else %} far {% endif %} fa-star gold f3"></i>
   </a>
   <article class="center mw5 mw7-ns hidden ba mv4">
-    <h1 class=" f4 bg-near-black white mw5 mv0 pv2 ph3 courier">{{snippet.title}}</h1>
+    <h1 class=" f4 bg-near-black white tc mv0 pv2 ph3 courier">{{snippet.title}}</h1>
     <div class="pa3 bt flex items-center">
       <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
         Description: 
       </p>
-      <pre class="f6 f5-ns lh-copy mv0 courier w-75">
+      <p class="f6 f5-ns lh-copy mv0 courier w-75">
         {{snippet.description}}
-      </pre>
+      </p>
     </div>
-    <div class="pa3 ba">
+    <div class="pa3 ba flex">
       <p class="f6 f5-ns lh-copy mv0 courier w-25">
         Tags:
       </p>
       <p class="f6 f5-ns lh-copy mv0 courier w-75">
-        {{ snippet.tags.all }}
+        {% for tag in snippet.tags.all %}
+        {{ tag }}
+        {% endfor %}
+
       </p>
     </div>
+    <div class="pa3 ba flex">
+      <p class="f6 f5-ns lh-copy mv0 courier w-25">
+        Code:
+      </p>
+      <pre class="language-{{ snippet.language.slug }} mw8"><code>{{ snippet.text }}</code></pre>
+    </div>
+    <div class="pa3 bt flex items-center justify-between courier">
+      <form action="{% url 'code_view' pk=snippet.pk %}" method='POST'>
+        {% csrf_token %}
+        {{ form.text|attr:"rows:3"|attr:"columns:30"|attr:"placeholder:Reply Here" }}
+        <button type='submit'>Reply</button>
+      </form>
+    </div>
+    {% for comment in comments %}
+    <div class="pa3 bt flex items-center justify-between courier">
+      <div class="fl w-25 flex justify-center">
+        <p>{{ comment.user }}</p>
+      </div>
+      <div class="fl w-75">
+        <p>{{ comment.created_at }}</p>
+        <p>{{ comment.text }}</p>
+      </div>
+    </div>
+    {% endfor %}
   </article>
 </div>
 

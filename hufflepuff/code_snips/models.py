@@ -5,6 +5,8 @@ from autoslug import AutoSlugField
 
 # Create your models here.
 class User(AbstractUser):
+    avatar = models.URLField(blank=True, null=True)
+    
     def __repr__(self):
         return f"<User username={self.username}>"
 
