@@ -21,7 +21,8 @@
       <h1 class=" f4 black mw5 mv0 pv2 ph3 sans-serif bt br bl"><a class="link dim black sans-serif" href="{% url 'code_view' pk=snippet.pk %}">{{ snippet.title }}</a></h1>
     </div>
     <div class="pa3 ba">
-      <pre class="language-python mw8"><code>{{ snippet.text }}</code></pre>
+      <pre class="language-{{ snippet.language.slug }} mw8"><code>{{ snippet.text }}</code></pre>
+
     </div>
   </article>
   <div class="flex flex-column">

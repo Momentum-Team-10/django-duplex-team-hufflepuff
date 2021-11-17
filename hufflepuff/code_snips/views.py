@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Snippet, Comment
 from .forms import SnippetForm, CommentForm
-
 # Create your views here.
 
 def home_page(request):
