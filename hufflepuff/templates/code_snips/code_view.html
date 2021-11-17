@@ -17,7 +17,7 @@
         {{snippet.description}}
       </pre>
     </div>
-    <div class="pa3 ba">
+    <div class="pa3 ba flex">
       <p class="f6 f5-ns lh-copy mv0 courier w-25">
         Tags:
       </p>
@@ -35,9 +35,14 @@
       </form>
     </div>
     {% for comment in comments %}
-    <div class="pa3 bt flex items-center justify-between sans-serif">
-      <p>{{ comment.user }} | {{ comment.created_at }}</p>
-      <p>{{ comment.text }}</p>
+    <div class="pa3 bt flex items-center justify-between courier">
+      <div class="fl w-25 flex justify-center">
+        <p>{{ comment.user }}</p>
+      </div>
+      <div class="fl w-75">
+        <p>{{ comment.created_at }}</p>
+        <p>{{ comment.text }}</p>
+      </div>
     </div>
     {% endfor %}
   </article>

@@ -34,7 +34,9 @@ def add_snip(request):
   else:
     form = SnippetForm(data=request.POST)
     if form.is_valid():
-      form.save()
+      snippet_form = form.save(commit=False)
+      snippet_form.user = request.user
+      snippet_form.save()
       return redirect('user_page')
   return render(request, 'code_snips/add_snip.html', {'form': form})
 
