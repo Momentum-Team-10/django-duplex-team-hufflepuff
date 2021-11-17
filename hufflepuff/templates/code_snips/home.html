@@ -1,6 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block javascript %}
+<script src="{% static 'js/prism.js' %}" defer></script>
+<script src="{% static 'js/copy_function.js' %}" defer></script>
+{% endblock javascript %}
 
 {% block content %}
+
 {% if user.is_authenticated == False %}
 <article class="">
   <h1 class="sans-serif">
