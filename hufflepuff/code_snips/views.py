@@ -104,7 +104,7 @@ def search_by_user(request):
 def favorite_snippet(request, pk):
   user = request.user
   snippet = get_object_or_404(Snippet, pk=pk)
-
+  
   if request.method == "DELETE":
     snippet.favorited.remove(user)
     favorited = False
@@ -114,17 +114,22 @@ def favorite_snippet(request, pk):
 
   # Lazy non-seperated check if request is ajax
   if(request.headers.get("x-requested-with") == "XMLHttpRequest"):
-    return JsonResponse({"favorited": favorited })
+    return JsonResponse({ "favorited": favorited })
 
   return redirect("code_view", pk=pk)
 
 @login_required
 def clone_snippet(request, pk):
+  # retrieve snippet and user info
   user = request.user
   snippet = get_object_or_404(Snippet, pk=pk)
+  # create clone and edit data to asociate user
   snippet.created_by = user
-  # snippet.created_at = datetime.now()
+  snippet.created_at = datetime.datetime.now()
   snippet.pk = None
+  # save clone as new snippet by user and redirect user to their new snippet
   snippet.save()
   new_pk = snippet.pk
+  # attach MtM relationship
+
   return redirect('code_view', pk=new_pk)
