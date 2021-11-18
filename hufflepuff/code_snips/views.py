@@ -57,12 +57,17 @@ def edit_snip(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   if request.method == 'GET':
     form = SnippetForm(instance=snippet)
+    tag_form = TagForm()
   else:
     form = SnippetForm(data=request.POST, instance=snippet)
-    if form.is_valid():
+    tag_form = TagForm(data=request.POST)
+    if tag_form.is_valid():
+      tag_form.save()
+      return redirect('edit_snip', pk=pk)
+    elif form.is_valid():
       form.save()
       return redirect('user_page')
-  return render(request, 'code_snips/edit_snip.html', {'form': form, 'snippet': snippet})
+  return render(request, 'code_snips/edit_snip.html', {'form': form, 'tag_form': tag_form, 'snippet': snippet})
 
 @login_required
 def delete_snip(request, pk):
