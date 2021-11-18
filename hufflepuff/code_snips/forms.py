@@ -12,6 +12,10 @@ class SnippetForm(forms.ModelForm):
             'language',
             'tags',
         ]
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
 
 
 class CommentForm(forms.ModelForm):
