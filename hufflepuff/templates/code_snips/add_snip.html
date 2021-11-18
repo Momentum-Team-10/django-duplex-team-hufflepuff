@@ -1,14 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Add Code Snippet</h1>
 
 <div>
-    <form action="{% url 'add_snip' %}", method='POST'>
+    <a class="f6 link dim br3 ba bw2 ph3 pv2 mb2 dib blue sans-serif" href={% url 'home_page' %}>Back to all snippets</a>
+    <form action="{% url 'add_snip' %}" method='POST'>
         {% csrf_token %}
-        {{ form.as_p }}
-        <div>
-            <button type="submit">Add Snip</button>
+        <article  class="center mw5 mw7-ns hidden ba mv4">
+            <h1 class=" f4 bg-near-black white tc mv0 pv2 ph3 courier">Add Snippet</h1>
+            <div class="pa3 bt flex items-center">
+                <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
+                    Title:
+                </p>
+                <p class="f6 f5-ns lh-copy mv0 courier w-75">
+                    {{ form.title }}
+                </p>
+            </div>
+            <div class="pa3 bt flex items-center">
+                <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
+                    Code:
+                </p>
+                <p class="f6 f5-ns lh-copy mv0 courier w-75">
+                    {{ form.text }}
+                </p>
+            </div>
+            <div class="pa3 bt flex items-center">
+                <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
+                    Description:
+                </p>
+                <p class="f6 f5-ns lh-copy mv0 courier w-75">
+                    {{ form.description }}
+                </p>
+            </div>
+            <div class="pa3 bt flex items-center">
+                <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
+                    Language:
+                </p>
+                <p class="f6 f5-ns lh-copy mv0 courier w-75">
+                    {{ form.language }}
+                </p>
+            </div>
+            <div class="pa3 bt flex items-center">
+                <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
+                    Tags:
+                </p>
+                <p class="f6 f5-ns lh-copy mv0 courier w-75">
+                    {{ form.tags }}
+                </p>
+            </div>
+        </article>
+        <div class="flex justify-center">
+            <button class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif" type="submit">Save Changes</button>
         </div>
     </form>
 </div>
