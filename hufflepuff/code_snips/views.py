@@ -13,8 +13,9 @@ def home_page(request):
 
 @login_required
 def user_page(request):
-  snippets=Snippet.objects.filter(favorited=True)
-  return render(request, 'code_snips/user_page.html', {"snippets": snippets})
+  favorites=Snippet.objects.filter(favorited=True)
+  authored = Snippet.objects.filter(created_by=request.user)
+  return render(request, 'code_snips/user_page.html', {"favorites": favorites, "authored": authored})
 
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
