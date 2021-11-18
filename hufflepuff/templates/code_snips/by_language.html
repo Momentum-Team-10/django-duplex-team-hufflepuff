@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% load static %}
 
+{% block title %}
+{{ language }} Snippets
+{% endblock title %}
+
 {% block javascript %}
 <script src="{% static 'js/prism.js' %}" defer></script>
 <script src="{% static 'js/copy_function.js' %}" defer></script>
