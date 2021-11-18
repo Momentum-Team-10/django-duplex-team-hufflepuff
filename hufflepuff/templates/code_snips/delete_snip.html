@@ -4,7 +4,7 @@
 <div>
     <form class="flex flex-column items-center justify-center" action="{% url 'delete_snip' pk=snippet.pk %}" method='POST'>
         {% csrf_token %}
-        <p class="f1 sans-serif">Are you sure you want to delete {{ snippet.title }}?</p>
+        <p class="f1 sans-serif">Are you sure you want to delete <span class="hot-pink">{{ snippet.title }}</span>?</p>
         <div class="flex items-center">
             <button class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif" style='submit'>Delete Snippet</button>
             <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="{% url 'code_view' pk=snippet.pk %}">Cancel</a>
