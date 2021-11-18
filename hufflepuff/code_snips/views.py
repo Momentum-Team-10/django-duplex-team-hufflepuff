@@ -9,8 +9,9 @@ import datetime
 
 def home_page(request):
   user = request.user
-  snippets = Snippet.objects.all()[0:5]
-  return render(request, 'code_snips/home.html', {"snippets": snippets, "user":user})
+  all_snips = Snippet.objects.order_by('-created_at')
+  some_snips = Snippet.objects.order_by('-created_at')[0:5]
+  return render(request, 'code_snips/home.html', {"some_snips": some_snips, "all_snips": all_snips, "user":user})
 
 @login_required
 def user_page(request):
