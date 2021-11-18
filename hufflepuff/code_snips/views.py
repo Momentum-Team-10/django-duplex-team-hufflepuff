@@ -105,10 +105,17 @@ def favorite_snippet(request, pk):
   user = request.user
   snippet = get_object_or_404(Snippet, pk=pk)
   
-  if request.method == "DELETE":
+  # if snippet in user.favorite_snippets:
+  #   user.favorite_snippets.remove(snippet)
+  #   favorited = False
+  # else:
+  #   user.favorite_snippets.add(snippet)
+  #   favorited = True
+
+  if user in snippet.favorited.all():
     snippet.favorited.remove(user)
     favorited = False
-  elif request.method == "POST":
+  else:
     snippet.favorited.add(user)
     favorited = True
 
@@ -116,7 +123,24 @@ def favorite_snippet(request, pk):
   if(request.headers.get("x-requested-with") == "XMLHttpRequest"):
     return JsonResponse({ "favorited": favorited })
 
-  return redirect("code_view", pk=pk)
+# @login_required
+# def favorite_album(request, pk):
+#     # get the user
+#     user = request.user
+#     # get the album
+#     album = get_object_or_404(Album, pk=pk)
+
+#     if request.method == "DELETE":
+#         album.favorited_by.remove(user)
+#         favorited = False
+#     elif request.method == 'POST':
+#         album.favorited_by.add(user)
+#         favorited = True
+
+#     if is_ajax(request):
+#         return JsonResponse({"favorited": favorited })
+
+#     return redirect("show_album", pk=pk)
 
 @login_required
 def clone_snippet(request, pk):
@@ -124,12 +148,12 @@ def clone_snippet(request, pk):
   user = request.user
   snippet = get_object_or_404(Snippet, pk=pk)
   # create clone and edit data to asociate user
+  tags = snippet.tags.all()
   snippet.created_by = user
   snippet.created_at = datetime.datetime.now()
   snippet.pk = None
   # save clone as new snippet by user and redirect user to their new snippet
   snippet.save()
   new_pk = snippet.pk
-  # attach MtM relationship
-
+  snippet.tags.add(*tags)
   return redirect('code_view', pk=new_pk)
