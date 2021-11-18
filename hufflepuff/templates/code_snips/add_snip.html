@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 Add Snippet
 {% endblock title %}
+
+{% block javascript %}
+<script src="{% static 'js/tags_display.js' %}" defer></script>
+{% endblock javascript %}
 
 {% block content %}
 
@@ -49,7 +55,7 @@ Add Snippet
                     Tags:
                 </p>
                 <p class="f6 f5-ns lh-copy mv0 courier w-75">
-                    {{ form.tags }}
+                     {{ form.tags }} 
                 </p>
             </div>
         </article>
