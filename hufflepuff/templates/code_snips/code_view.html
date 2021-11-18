@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block title %}
+{{ snippet.title }}
+{% endblock title %}
+
 {% block javascript %}
 <script src="{% static 'js/prism.js' %}" defer></script>
 <script src="{% static 'js/copy_function.js' %}" defer></script>

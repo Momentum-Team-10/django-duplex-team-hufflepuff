@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Delete Confirmation
+{% endblock title %}
+
 {% block content %}
 <div>
     <form class="flex flex-column items-center justify-center" action="{% url 'delete_snip' pk=snippet.pk %}" method='POST'>
