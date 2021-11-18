@@ -31,6 +31,7 @@ def code_view(request, pk):
       comment_form.save()
   return render(request, 'code_snips/code_view.html', {"snippet": snippet, "comments": comments, "form": form, "user": user, "pk":pk,})
 
+@login_required
 def add_snip(request):
   if request.method == 'GET':
     form = SnippetForm()
@@ -43,6 +44,7 @@ def add_snip(request):
       return redirect('user_page')
   return render(request, 'code_snips/add_snip.html', {'form': form})
 
+@login_required
 def edit_snip(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   if request.method == 'GET':
@@ -54,6 +56,7 @@ def edit_snip(request, pk):
       return redirect('user_page')
   return render(request, 'code_snips/edit_snip.html', {'form': form, 'snippet': snippet})
 
+@login_required
 def delete_snip(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   if request.method == 'POST':
