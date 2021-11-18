@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 Edit Snippet
 {% endblock title %}
+
+{% block javascript %}
+<script src="{% static 'js/tags_display.js' %}" defer></script>
+{% endblock javascript %}
 
 {% block content %}
 <div>
@@ -54,6 +60,22 @@ Edit Snippet
         </article>
         <div class="flex justify-center">
             <button class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif" type="submit">Save Changes</button>
+        </div>
+    </form>
+    <form action="{% url 'edit_snip' pk=snippet.pk %}" method='POST'>
+        {% csrf_token %}
+        <article class="center mw5 mw7-ns hidden ba mv4">
+            <div class="pa3 bt flex items-center">
+                <p class="f6 f5-ns lh-copy mv0 courier w-25 center">
+                    New Tag:
+                </p>
+                <p class="f6 f5-ns lh-copy mv0 courier w-75">
+                    {{ tag_form.name }}
+                </p>
+            </div>
+        </article>
+        <div class="flex justify-center">
+            <button class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif" type="submit">Add Tag</button>
         </div>
     </form>
 </div>

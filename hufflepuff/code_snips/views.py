@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Snippet, Comment
-from .forms import SnippetForm, CommentForm
+from .forms import SnippetForm, CommentForm, TagForm
 import datetime
 # Create your views here.
 
@@ -19,6 +19,7 @@ def user_page(request):
   authored = Snippet.objects.filter(created_by=request.user)
   return render(request, 'code_snips/user_page.html', {"favorites": favorites, "authored": authored})
 
+@login_required
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   comments = Comment.objects.filter(snippet=snippet).order_by('-created_at')
@@ -38,12 +39,18 @@ def code_view(request, pk):
 def add_snip(request):
   if request.method == 'GET':
     form = SnippetForm()
+    # tag_form = TagForm()
   else:
     form = SnippetForm(data=request.POST)
+    # tag_form = TagForm(data=request.POST)
+    # if tag_form.is_valid():
+    #   tag_form.save()
+    #   return redirect('add_snip')
     if form.is_valid():
       snippet_form = form.save(commit=False)
       snippet_form.created_by = request.user
       snippet_form.save()
+      form.save_m2m()
       return redirect('user_page')
   return render(request, 'code_snips/add_snip.html', {'form': form})
 
@@ -52,12 +59,17 @@ def edit_snip(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
   if request.method == 'GET':
     form = SnippetForm(instance=snippet)
+    tag_form = TagForm()
   else:
     form = SnippetForm(data=request.POST, instance=snippet)
-    if form.is_valid():
+    tag_form = TagForm(data=request.POST)
+    if tag_form.is_valid():
+      tag_form.save()
+      return redirect('edit_snip', pk=pk)
+    elif form.is_valid():
       form.save()
       return redirect('user_page')
-  return render(request, 'code_snips/edit_snip.html', {'form': form, 'snippet': snippet})
+  return render(request, 'code_snips/edit_snip.html', {'form': form, 'tag_form': tag_form, 'snippet': snippet})
 
 @login_required
 def delete_snip(request, pk):
@@ -67,16 +79,19 @@ def delete_snip(request, pk):
     return redirect('user_page')
   return render(request, 'code_snips/delete_snip.html', {'snippet': snippet})
 
+@login_required
 def filter_by_tag(request, tag):
   snippets=Snippet.objects.filter(tags__name=tag)
   snippets.order_by('-created_at')
   return render(request, 'code_snips/filtered_page.html', {"snippets":snippets, "tag":tag})
 
+@login_required
 def filter_by_language(request, language):
   snippets=Snippet.objects.filter(language__name=language)
   snippets.order_by('-created_at')
   return render(request, 'code_snips/by_language.html', {"snippets":snippets, "language":language})
 
+@login_required
 def search_by_title(request):
     # get the search term from the query params
     query = request.GET.get("q")
@@ -86,16 +101,19 @@ def search_by_title(request):
 
     return render(request, "code_snips/home.html", {"snippets": results})
 
+@login_required
 def search_by_language(request):
   query = request.GET.get("q")
   results = Snippet.objects.filter(language__name__icontains=query)
   return render(request, "code_snips/home.html", {"snippets": results})
 
+@login_required
 def search_by_tag(request):
   query = request.GET.get("q")
   results = Snippet.objects.filter(tags__name__icontains=query)
   return render(request, "code_snips/home.html", {"snippets": results})
 
+@login_required
 def search_by_user(request):
   query = request.GET.get("q")
   results = Snippet.objects.filter(created_by__username__icontains=query)
