@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 Edit Snippet
 {% endblock title %}
+
+{% block javascript %}
+<script src="{% static 'js/tags_display.js' %}" defer></script>
+{% endblock javascript %}
 
 {% block content %}
 <div>
