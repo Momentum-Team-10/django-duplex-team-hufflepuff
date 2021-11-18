@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Delete {{ snippet.title }}</h1>
-
 <div>
-    <form action="{% url 'delete_snip' pk=snippet.pk %}" method='POST'>
+    <form class="flex flex-column items-center justify-center" action="{% url 'delete_snip' pk=snippet.pk %}" method='POST'>
         {% csrf_token %}
-        <p>Are you sure you want to delete this code snippet?</p>
-        <div>
-            <button style='submit'>Delete Snippet</button>
-            <a href="{% url 'code_view' pk=snippet.pk %}">Cancel</a>
+        <p class="f1 sans-serif">Are you sure you want to delete <span class="hot-pink">{{ snippet.title }}</span>?</p>
+        <div class="flex items-center">
+            <button class="f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib black sans-serif" style='submit'>Delete Snippet</button>
+            <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif" href="{% url 'code_view' pk=snippet.pk %}">Cancel</a>
         </div>
     </form>
 </div>
