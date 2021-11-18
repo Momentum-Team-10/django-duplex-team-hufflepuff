@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Snippet, Comment
 from .forms import SnippetForm, CommentForm
+import datetime
 # Create your views here.
 
 def home_page(request):
@@ -112,3 +113,14 @@ def favorite_snippet(request, pk):
     return JsonResponse({"favorited": favorited })
 
   return redirect("code_view", pk=pk)
+
+@login_required
+def clone_snippet(request, pk):
+  user = request.user
+  snippet = get_object_or_404(Snippet, pk=pk)
+  snippet.created_by = user
+  # snippet.created_at = datetime.now()
+  snippet.pk = None
+  snippet.save()
+  new_pk = snippet.pk
+  return redirect('code_view', pk=new_pk)
