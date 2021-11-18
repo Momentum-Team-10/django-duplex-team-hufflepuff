@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Snippet, Comment
-from .forms import SnippetForm, CommentForm
+from .forms import SnippetForm, CommentForm, TagForm
 import datetime
 # Create your views here.
 
@@ -38,14 +38,19 @@ def code_view(request, pk):
 def add_snip(request):
   if request.method == 'GET':
     form = SnippetForm()
+    tag_form = TagForm()
   else:
     form = SnippetForm(data=request.POST)
-    if form.is_valid():
+    tag_form = TagForm(data=request.POST)
+    if tag_form.is_valid():
+      tag_form.save()
+      return redirect('add_snip')
+    elif form.is_valid():
       snippet_form = form.save(commit=False)
       snippet_form.created_by = request.user
       snippet_form.save()
       return redirect('user_page')
-  return render(request, 'code_snips/add_snip.html', {'form': form})
+  return render(request, 'code_snips/add_snip.html', {'form': form, 'tag_form': tag_form})
 
 @login_required
 def edit_snip(request, pk):
