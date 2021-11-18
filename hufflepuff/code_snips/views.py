@@ -22,7 +22,7 @@ def user_page(request):
 @login_required
 def code_view(request, pk):
   snippet = get_object_or_404(Snippet, pk=pk)
-  comments = Comment.objects.filter(snippet=snippet).order_by('-created_at')
+  comments = Comment.objects.filter(snippet=snippet).order_by('created_at')
   user = request.user
   if request.method == 'GET':
     form = CommentForm()
