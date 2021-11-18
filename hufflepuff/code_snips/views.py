@@ -39,13 +39,13 @@ def code_view(request, pk):
 def add_snip(request):
   if request.method == 'GET':
     form = SnippetForm()
-    # tag_form = TagForm()
+    tag_form = TagForm()
   else:
     form = SnippetForm(data=request.POST)
-    # tag_form = TagForm(data=request.POST)
-    # if tag_form.is_valid():
-    #   tag_form.save()
-    #   return redirect('add_snip')
+    tag_form = TagForm(data=request.POST)
+    if tag_form.is_valid():
+      tag_form.save()
+      return redirect('add_snip')
     if form.is_valid():
       snippet_form = form.save(commit=False)
       snippet_form.created_by = request.user
