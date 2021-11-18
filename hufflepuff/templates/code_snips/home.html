@@ -14,18 +14,19 @@
     Your friendly, neighborhood code-bank.
   </h1>
   <h2 class="sans-serif">
-    Sign up for beta access with the ability to create and store your own Code Snippets!
+    <a class="black nobr" href="{% url 'registration_register' %}">Sign up</a> for beta access with the ability to create and store your own Code Snippets!
   </h2>
 </article>
 {% endif %}
 
-{% for snippet in snippets %}
+{% if user.is_authenticated %}
+{% for snippet in all_snips %}
 <div class="flex items-center justify-center">
   <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif">Copy</a>
   <article class="mh2 hidden mv4 m0">
     <div class="flex">
       <h1 class=" f4 bg-near-black mw5 mv0 pv2 ph3 sans-serif"><a class="link dim light-gray sans-serif" href="{% url 'filter_by_language' language=snippet.language %}">{{ snippet.language }}</a></h1>
-      <h1 class=" f4 black mw5 mv0 pv2 ph3 sans-serif bt br bl"><a class="link dim black sans-serif" href="{% url 'code_view' pk=snippet.pk %}">{{ snippet.title }}</a></h1>
+      <h1 class=" f4 black mv0 pv2 ph3 sans-serif bt br bl"><a class="link dim black sans-serif" href="{% url 'code_view' pk=snippet.pk %}">{{ snippet.title }}</a></h1>
     </div>
     <div class="pa3 ba">
       <pre class="language-{{ snippet.language.slug }} mw8"><code>{{ snippet.text }}</code></pre>
@@ -39,5 +40,28 @@
   </div>
 </div>
 {% endfor %}
+{% else %}
+<h1 class="sans-serif tc pt5"><a class="black nobr" href="{% url 'auth_login' %}">Login</a> to See All Code_Snips</h1>
+{% for snippet in some_snips %}
+<div class="flex items-center justify-center">
+  <a class="copy f6 link dim br3 ba bw2 ph3 pv2 mb2 dib hot-pink sans-serif">Copy</a>
+  <article class="mh2 hidden mv4 m0">
+    <div class="flex">
+      <h1 class=" f4 bg-near-black mw5 mv0 pv2 ph3 sans-serif"><a class="link dim light-gray sans-serif" href="{% url 'filter_by_language' language=snippet.language %}">{{ snippet.language }}</a></h1>
+      <h1 class=" f4 black mv0 pv2 ph3 sans-serif bt br bl"><a class="link dim black sans-serif" href="{% url 'code_view' pk=snippet.pk %}">{{ snippet.title }}</a></h1>
+    </div>
+    <div class="pa3 ba">
+      <pre class="language-{{ snippet.language.slug }} mw8"><code>{{ snippet.text }}</code></pre>
+
+    </div>
+  </article>
+  <div class="flex flex-column">
+    {% for tag in snippet.tags.all %}
+    <a class="f6 link dim br1 ph3 pv2 mb2 dib white bg-hot-pink sans-serif fw6" href="{% url 'filter_by_tag' tag=tag.name %}">{{ tag }}</a>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+{% endif %}
 
 {% endblock %}
