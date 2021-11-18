@@ -31,6 +31,10 @@
           <a href="{% url 'user_page' %}"><img
             src="{{user.avatar}}"
             class="br4 h3 w3 dib" alt="avatar"></a>
+          {% else %}
+          <a href="{% url 'user_page' %}"><img
+            src="https://mobilityoi.org/wp-content/uploads/2015/06/Avatar-No-Photo-generic.jpg"
+            class="br4 h3 w3 dib" alt="avatar"></a>
           {% endif %}
           <a class="f4 fw6 db light-gray link dim pb4 pt3" href="{% url 'user_page' %}">{{user.username}}</a>
         </div>
